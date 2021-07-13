@@ -110,7 +110,7 @@ mergeable:
       - do: labels
         labels: [ 'type: refactor' ]
         mode: 'add'
-  - when: pull_request_review.*
+  - when: pull_request.*, pull_request_review.*
     name: "Check Approvals"
     validate: 
       - do: label
