@@ -11,132 +11,132 @@ mergeable:
           requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
           message: 'required'
         block:
-          changes_requested: false # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
           message: 'block'
-    # pass:
-    #   - do: comment
-    #     payload:
-    #       body: >
-    #         check_suite.completed
-    #     leave_old_comment: true # Optional, by default old comments are deleted, if true, old comments will be left alone
-  # - when: pull_request.opened
-  #   name: "Greet a contributor"
-  #   validate: []
-  #   pass:
-  #     - do: assign
-  #       assignees: [ '@author' ] # only array accepted, use @author for PR/Issue author
-  #     - do: request_review
-  #       reviewers: ['SeonHyungJo', 'CallbusLab']
-  #     - do: labels
-  #       labels: [ 'status: pending' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'feat'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: feat' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'build'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: build' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'chore'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: chore' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'style'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: style' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'ci'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: ci' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'docs'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: docs' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate:
-  #     - do: title
-  #       must_include:
-  #         regex: 'fix'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: fix' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'perf'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: perf' ]
-  #       mode: 'add'
-  # - when: pull_request.opened
-  #   name: "Set Type Label"
-  #   validate: 
-  #     - do: title
-  #       must_include:
-  #         regex: 'refactor'
-  #         message: 'Custom message...'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'type: refactor' ]
-  #       mode: 'add'
-  # - when: pull_request.*, pull_request_review.*
-  #   name: "Check Approvals"
-  #   validate: 
-  #     - do: label
-  #       begins_with:
-  #         match: 'status: approved' # or array of strings
-  #         message: 'Some message...'  
-  #   pass:
-  #     - do: merge
-  #       merge_method: 'squash' # Optional , default is 'merge'. Other options : 'rebase', 'squash'
+    pass:
+      - do: comment
+        payload:
+          body: >
+            check_suite.completed
+        leave_old_comment: true # Optional, by default old comments are deleted, if true, old comments will be left alone
+  - when: pull_request.opened
+    name: "Greet a contributor"
+    validate: []
+    pass:
+      - do: assign
+        assignees: [ '@author' ] # only array accepted, use @author for PR/Issue author
+      - do: request_review
+        reviewers: ['SeonHyungJo', 'CallbusLab']
+      - do: labels
+        labels: [ 'status: pending' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'feat'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: feat' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'build'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: build' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'chore'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: chore' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'style'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: style' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'ci'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: ci' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'docs'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: docs' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate:
+      - do: title
+        must_include:
+          regex: 'fix'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: fix' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'perf'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: perf' ]
+        mode: 'add'
+  - when: pull_request.opened
+    name: "Set Type Label"
+    validate: 
+      - do: title
+        must_include:
+          regex: 'refactor'
+          message: 'Custom message...'
+    pass:
+      - do: labels
+        labels: [ 'type: refactor' ]
+        mode: 'add'
+  - when: pull_request.*, pull_request_review.*
+    name: "Check Approvals"
+    validate: 
+      - do: label
+        begins_with:
+          match: 'status: approved' # or array of strings
+          message: 'Some message...'  
+    pass:
+      - do: merge
+        merge_method: 'squash' # Optional , default is 'merge'. Other options : 'rebase', 'squash'
     
