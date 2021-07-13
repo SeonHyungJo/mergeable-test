@@ -139,7 +139,7 @@ mergeable:
         labels: [ 'type: refactor' ]
         mode: 'add'
         
-  - when: pull_request_review
+  - when: pull_request_review.*
     name: "Review"
     pass:
       - do: comment
