@@ -11,26 +11,6 @@ mergeable:
       - do: labels
         labels: [ 'status: pending' ]
         mode: 'add'
-  - when: schedule.repository, pull_request.*, pull_request_review.*
-    name: 'Approval check'
-    validate:
-      - do: approvals
-        required:
-          reviewers: [ CallbusLab, SeonHyungJo ]
-          owners: false # Optional boolean. When true, the file .github/CODEOWNERS is read and owners made required reviewers
-          assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
-          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
-          message: 'required'
-        block:
-          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
-          message: 'block'
-    pass:
-      - do: labels
-        labels: [ 'status: pending' ]
-        mode: 'delete'
-      - do: labels
-        labels: [ 'status: approved' ]
-        mode: 'add'
   - when: pull_request.opened
     name: "Set Type Label"
     validate: 
@@ -129,6 +109,26 @@ mergeable:
     pass:
       - do: labels
         labels: [ 'type: refactor' ]
+        mode: 'add'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Approval check'
+    validate:
+      - do: approvals
+        required:
+          reviewers: [ CallbusLab, SeonHyungJo ]
+          owners: false # Optional boolean. When true, the file .github/CODEOWNERS is read and owners made required reviewers
+          assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
+          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
+          message: 'required'
+        block:
+          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+          message: 'block'
+    pass:
+      - do: labels
+        labels: [ 'status: pending' ]
+        mode: 'delete'
+      - do: labels
+        labels: [ 'status: approved' ]
         mode: 'add'
   - when: pull_request.*, pull_request_review.*
     name: "Check Approvals"
