@@ -138,25 +138,7 @@ mergeable:
       - do: labels
         labels: [ 'type: refactor' ]
         mode: 'add'
-  - when: pull_request_review.review_requested
-    name: "Review"
-    pass:
-      - do: labels
-        labels: [ 'status:*' ]
-        mode: 'delete'
-      - do: labels
-        labels: [ 'status: pending' ]
-        mode: 'add'
-  - when: pull_request_review.review_requested
-    name: "request review"
-    pass:
-      - do: labels
-        labels: [ 'status:*' ]
-        mode: 'delete'
-      - do: labels
-        labels: [ 'status: pending' ]
-        mode: 'add'
-  - when: pull_request_review.*
+  - when: pull_request.*
     name: "Check Approvals"
     validate: 
       - do: approvals
