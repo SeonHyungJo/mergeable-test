@@ -11,7 +11,7 @@ mergeable:
           requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
           message: 'required'
         block:
-          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+          changes_requested: false # If true, block all approvals when one of the reviewers gave 'changes_requested' review
           message: 'block'
     # pass:
     #   - do: comment
