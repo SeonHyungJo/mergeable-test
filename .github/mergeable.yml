@@ -12,7 +12,7 @@ mergeable:
         # if label doesn't exist, it'll be created
         labels: [ 'status: pending' ] # All labels beginning with 'feature-' will be removed
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -26,7 +26,7 @@ mergeable:
       - do: labels
         labels: [ 'type: feat' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -40,7 +40,7 @@ mergeable:
       - do: labels
         labels: [ 'type: build' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -54,7 +54,7 @@ mergeable:
       - do: labels
         labels: [ 'type: chore' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -68,7 +68,7 @@ mergeable:
       - do: labels
         labels: [ 'type: style' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -82,7 +82,7 @@ mergeable:
       - do: labels
         labels: [ 'type: ci' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -96,7 +96,7 @@ mergeable:
       - do: labels
         labels: [ 'type: docs' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate:
       - do: title
@@ -110,7 +110,7 @@ mergeable:
       - do: labels
         labels: [ 'type: fix' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -124,7 +124,7 @@ mergeable:
       - do: labels
         labels: [ 'type: perf' ]
         mode: 'add'
-  - when: pull_request.title
+  - when: pull_request.title, pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
