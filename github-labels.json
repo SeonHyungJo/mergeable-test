@@ -1,0 +1,99 @@
+[
+  {
+    "name": "priority: now",
+    "color": "b60205",
+    "description": "즉각적으로 처리되어야 하는(ex. hotfix)"
+  },
+  {
+    "name": "priority: 2day",
+    "color": "d93f0b",
+    "description": "2일안에 처리되어야 하는(ex. 정기배포)"
+  },
+  {
+    "name": "priority: week",
+    "color": "fbca04",
+    "description": "일주일안에 처리되어야 하는(ex. 정기배포)"
+  },
+  {
+    "name": "priority: soon",
+    "color": "0e8a16",
+    "description": "곧(언제가 될지 모르는) 처리되어야 하는"
+  },
+
+  {
+    "name": "status: approved",
+    "color": "215cea",
+    "description": "승인"
+  },
+  {
+    "name": "status: blocked",
+    "color": "fec1c1",
+    "description": "미승인"
+  },
+  {
+    "name": "status: pending",
+    "color": "fef2c0",
+    "description": "진행중"
+  },
+  {
+    "name": "status: duplicate",
+    "color": "cfd3d7",
+    "description": "관련된 PR이 이미 존재"
+  },
+  {
+    "name": "status: wont do/fix",
+    "color": "eeeeee",
+    "description": "수정되지 않길 바람"
+  },
+
+  {
+    "name": "type: feat",
+    "color": "84b6eb",
+    "description": "새로운 기능 추가"
+  },
+  {
+    "name": "type: fix",
+    "color": "d73a4a",
+    "description": "버그 수정"
+  },
+  {
+    "name": "type: build",
+    "color": "d4c5f9",
+    "description": "빌드(or release)"
+  },
+  {
+    "name": "type: chore",
+    "color": "3E4B9E",
+    "description": "알쥬?"
+  },
+  {
+    "name": "type: ci",
+    "color": "1EA6B0",
+    "description": "ci 관련 작업"
+  },
+  {
+    "name": "type: docs",
+    "color": "006b75",
+    "description": "문서작업"
+  },
+  {
+    "name": "type: style",
+    "color": "fbca04",
+    "description": "스타일 변경"
+  },
+  {
+    "name": "type: refactor",
+    "color": "A3BA8B",
+    "description": "리팩토링"
+  },
+  {
+    "name": "type: perf",
+    "color": "d876e3",
+    "description": "성능 개선"
+  },
+  {
+    "name": "type: test",
+    "color": "F80685",
+    "description": "테스트"
+  }
+]
