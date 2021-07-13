@@ -5,6 +5,7 @@ mergeable:
     validate:
       - do: approvals
         required:
+          reviewers: [ CallbusLab ]
           assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
           requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
           message: 'required'
