@@ -21,6 +21,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
+      - do: labels
         labels: [ 'type: feat' ]
         mode: 'add'
   - when: pull_request.*
@@ -31,6 +34,9 @@ mergeable:
           regex: 'build'
           message: 'Custom message...'
     pass:
+      - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
       - do: labels
         labels: [ 'type: build' ]
         mode: 'add'
@@ -43,6 +49,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
+      - do: labels
         labels: [ 'type: chore' ]
         mode: 'add'
   - when: pull_request.*
@@ -53,6 +62,9 @@ mergeable:
           regex: 'style'
           message: 'Custom message...'
     pass:
+      - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
       - do: labels
         labels: [ 'type: style' ]
         mode: 'add'
@@ -65,6 +77,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
+      - do: labels
         labels: [ 'type: ci' ]
         mode: 'add'
   - when: pull_request.*
@@ -76,16 +91,22 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
+      - do: labels
         labels: [ 'type: docs' ]
         mode: 'add'
   - when: pull_request.*
     name: "Set Type Label"
-    validate: 
+    validate:
       - do: title
         must_include:
           regex: 'fix'
           message: 'Custom message...'
     pass:
+      - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
       - do: labels
         labels: [ 'type: fix' ]
         mode: 'add'
@@ -98,6 +119,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
+      - do: labels
         labels: [ 'type: perf' ]
         mode: 'add'
   - when: pull_request.*
@@ -108,6 +132,9 @@ mergeable:
           regex: 'refactor'
           message: 'Custom message...'
     pass:
+      - do: labels
+        labels: [ 'type:*' ]
+        mode: 'delete'
       - do: labels
         labels: [ 'type: refactor' ]
         mode: 'add'
