@@ -16,15 +16,12 @@ mergeable:
     name: Check Approval
     validate:
       - do: approvals
-        # required:
-        #   requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
-        #   message: '승인해주세요'
+        required:
+          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
+          message: '승인해주세요'
         # min:
         #   count: 1 # Number of minimum reviewers. In this case 2.
         #   message: '최소 1명의 승인이 필요합니다.'
     pass: 
-      - do: comment
-        payload:
-          body: This is old. Is it still relevant?
       - do: merge
         merge_method: 'squash'
