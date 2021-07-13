@@ -14,14 +14,7 @@ mergeable:
         mode: 'add'
   - when: pull_request.*
     name: Check Approval
-    validate:
-      - do: approvals
-        required:
-          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
-          message: 'Custom message...'
-        block:
-          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
-          message: 'Custom message...'
+    validate: []
     pass: 
       - do: merge
         merge_method: 'squash'
