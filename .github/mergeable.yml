@@ -11,7 +11,7 @@ mergeable:
       - do: labels
         labels: [ 'status: pending' ]
         mode: 'add'
-  - when: pull_request.*, pull_request_review.*
+  - when: pull_request.*, pull_request_review.*, status.*, check_suite.*
     name: 'Approval check'
     validate:
       - do: approvals
