@@ -8,15 +8,15 @@ mergeable:
           assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
           requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
           message: 'required'
-        block:
-          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
-          message: 'block'
-    pass:
-      - do: comment
-        payload:
-          body: >
-            check_suite.completed
-        leave_old_comment: true # Optional, by default old comments are deleted, if true, old comments will be left alone
+        # block:
+        #   changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+        #   message: 'block'
+    # pass:
+    #   - do: comment
+    #     payload:
+    #       body: >
+    #         check_suite.completed
+    #     leave_old_comment: true # Optional, by default old comments are deleted, if true, old comments will be left alone
   # - when: pull_request.opened
   #   name: "Greet a contributor"
   #   validate: []
