@@ -1,6 +1,6 @@
 version: 2
 mergeable:
-  - when: pull_request.synchronize, pull_request_review.*
+  - when: pull_request.*, pull_request_review.*
     name: 'Approval check'
     validate:
       - do: approvals
