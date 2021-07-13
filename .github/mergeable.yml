@@ -13,8 +13,12 @@ mergeable:
         labels: [ 'type-a', 'bug' ] # All labels beginning with 'feature-' will be removed
         mode: 'add'
   - when: pull_request.*
+    name: Check Approval
     validate:
-      - do: description
-        no_empty:
-          enabled: true
-          message: Description을 빈칸으로 할 수 없습니다.
+      - do: approvals
+        min:
+          count: 1 # Number of minimum reviewers. In this case 2.
+          message: '최소 1명의 승인이 필요합니다.'
+    pass: 
+      - do: merge
+        merge_method: 'squash'
