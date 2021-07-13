@@ -114,9 +114,9 @@ mergeable:
     name: "Check Approvals"
     validate: 
       - do: approvals
-    pass:
+    fail:
       - do: labels
-        labels: [ 'status: *' ]
+        labels: [ 'status: approved' ]
         mode: 'delete'
       - do: labels
         labels: [ 'status: approved' ]
