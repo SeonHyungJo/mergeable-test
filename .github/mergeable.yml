@@ -12,18 +12,24 @@ mergeable:
         # if label doesn't exist, it'll be created
         labels: [ 'type-a', 'bug' ] # All labels beginning with 'feature-' will be removed
         mode: 'add'
-  - when: pull_request.*
-    name: Check Approval
-    validate: 
-      - do: approvals
-        min:
-          count: 1 # Number of minimum reviewers. In this case 2.
-          message: 'Custom message...'
-        limit:
-          users: ['SeonHyungJo', 'CallbusLab'] # when the option is present, approvals from users in this list will count
-        block:
-          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
-          message: 'changes_requested'
-    pass: 
+  # - when: pull_request.*
+  #   name: Check Approval
+  #   validate: 
+  #     - do: approvals
+  #       min:
+  #         count: 1 # Number of minimum reviewers. In this case 2.
+  #         message: 'Custom message...'
+  #       limit:
+  #         users: ['SeonHyungJo', 'CallbusLab'] # when the option is present, approvals from users in this list will count
+  #       block:
+  #         changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+  #         message: 'changes_requested'
+  #   pass: 
+  #     - do: merge
+  #       merge_method: 'squash'
+  - when: pull_request.*, pull_request_review.*, status.*, check_suite.*
+    name: "Automatically merge pull requests once it passes all checks"
+    validate: []
+    pass:
       - do: merge
-        merge_method: 'squash'
+        merge_method: "squash"
