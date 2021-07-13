@@ -114,10 +114,6 @@ mergeable:
     name: "Check Approvals"
     validate: 
       - do: approvals
-        min:
-          count: 1
-        limit:
-          users: [ 'CallbusLab' ]
     pass:
       - do: comment
         payload:
