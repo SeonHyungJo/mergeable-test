@@ -1,6 +1,17 @@
 version: 2
 mergeable:
-  - when: pull_request.*, pull_request_review.*
+  - when: pull_request.opened
+    name: "Greet a contributor"
+    validate: []
+    pass:
+      - do: assign
+        assignees: [ '@author' ] # only array accepted, use @author for PR/Issue author
+      - do: request_review
+        reviewers: ['SeonHyungJo', 'CallbusLab']
+      - do: labels
+        labels: [ 'status: pending' ]
+        mode: 'add'
+  - when: schedule.repository, pull_request.*, pull_request_review.*
     name: 'Approval check'
     validate:
       - do: approvals
@@ -20,18 +31,6 @@ mergeable:
       - do: labels
         labels: [ 'status: approved' ]
         mode: 'add'
-  - when: pull_request.opened
-    name: "Greet a contributor"
-    validate: []
-    pass:
-      - do: assign
-        assignees: [ '@author' ] # only array accepted, use @author for PR/Issue author
-      - do: request_review
-        reviewers: ['SeonHyungJo', 'CallbusLab']
-      - do: labels
-        labels: [ 'status: pending' ]
-        mode: 'add'
-  
   - when: pull_request.opened
     name: "Set Type Label"
     validate: 
