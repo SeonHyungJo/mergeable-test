@@ -138,3 +138,39 @@ mergeable:
       - do: labels
         labels: [ 'type: refactor' ]
         mode: 'add'
+  - when: pull_request_review.review_requested
+    name: "Review"
+    pass:
+      - do: labels
+        labels: [ 'status:*' ]
+        mode: 'delete'
+      - do: labels
+        labels: [ 'status: pending' ]
+        mode: 'add'
+  - when: pull_request_review.review_requested
+    name: "request review"
+    pass:
+      - do: labels
+        labels: [ 'status:*' ]
+        mode: 'delete'
+      - do: labels
+        labels: [ 'status: pending' ]
+        mode: 'add'
+  - when: pull_request_review.*
+    name: "Check Approvals"
+    validate: 
+      - do: approvals
+        required:
+          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
+          message: 'Custom message...'
+        block:
+          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+          message: 'Custom message..'
+    pass:
+      - do: labels
+        labels: [ 'status:*' ]
+        mode: 'delete'
+      - do: labels
+        labels: [ 'status: approved' ]
+        mode: 'add'
+    
