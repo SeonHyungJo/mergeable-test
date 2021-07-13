@@ -114,12 +114,10 @@ mergeable:
     name: "Check Approvals"
     validate: 
       - do: approvals
-        required:
-          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
-          message: 'Custom message...'
-        block:
-          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
-          message: 'Custom message..'
+        min:
+          count: 1
+        limit:
+          users: [ 'CallbusLab' ]
     pass:
       - do: comment
         payload:
