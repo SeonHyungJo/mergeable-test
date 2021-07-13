@@ -114,10 +114,18 @@ mergeable:
     name: "Check Approvals"
     validate: 
       - do: approvals
+      - do: baseRef
+        must_include:
+          regex: 'master|feature-branch1'
+          regex_flag: 'none' # Optional. Specify the flag for Regex. default is 'i', to disable default use 'none'
+          message: 'Custom message...'
     pass:
       - do: comment
         payload:
           body: >
             Approval
         leave_old_comment: true # Optional, by default old comments are deleted, if true, old comments will be left alone
+    fail:
+      - do: merge
+        merge_method: 'squash' # Optional , default is 'merge'. Other options : 'rebase', 'squash'
     
