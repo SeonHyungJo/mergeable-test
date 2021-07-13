@@ -1,11 +1,6 @@
 version: 2
 mergeable:
   - when: pull_request.opened
-    # validate:
-    #   - do: assignee
-    #     min:
-    #       count: 1 # min number of assignees
-    #       message: '' # this is optional
     name: "Greet a contributor"
     validate: []
     pass:
@@ -13,6 +8,10 @@ mergeable:
         assignees: [ '@author' ] # only array accepted, use @author for PR/Issue author
       - do: request_review
         reviewers: ['SeonHyungJo']
+      - do: labels
+        # if label doesn't exist, it'll be created
+        labels: [ 'type-a', 'bug' ] # All labels beginning with 'feature-' will be removed
+        mode: 'add'
   - when: pull_request.*
     validate:
       - do: description
