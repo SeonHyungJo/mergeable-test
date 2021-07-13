@@ -1,6 +1,6 @@
 version: 2
 mergeable:
-  - when: pull_request.review_request_removed
+  - when: pull_request_review.submitted
     name: 'review_request_removed test'
     validate: []
     pass: 
