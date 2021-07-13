@@ -14,7 +14,14 @@ mergeable:
         mode: 'add'
   - when: pull_request.*
     name: Check Approval
-    validate: []
+    validate: 
+      - do: approvals
+        required:
+          reviewers: [ SeonHyungJo, CallbusLab ] # list of github usernames required to review
+          owners: true # Optional boolean. When true, the file .github/CODEOWNERS is read and owners made required reviewers
+          assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
+          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
+          message: 'Custom message...'
     pass: 
       - do: merge
         merge_method: 'squash'
