@@ -138,11 +138,3 @@ mergeable:
       - do: labels
         labels: [ 'type: refactor' ]
         mode: 'add'
-        
-  - when: pull_request_review.*
-    name: "Review"
-    pass:
-      - do: comment
-        payload:
-          body: >
-            Review
