@@ -1,11 +1,14 @@
 version: 2
 mergeable:
   - when: pull_request.opened
-    validate:
-      - do: assignee
-        min:
-          count: 1 # min number of assignees
-          message: '' # this is optional
+    # validate:
+    #   - do: assignee
+    #     min:
+    #       count: 1 # min number of assignees
+    #       message: '' # this is optional
+    name: "Greet a contributor"
+    validate: []
+    pass:
       - do: assign
         assignees: [ '@author' ] # only array accepted, use @author for PR/Issue author
       - do: request_review
