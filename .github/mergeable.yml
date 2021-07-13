@@ -4,10 +4,14 @@ mergeable:
     name: 'Approval check'
     validate:
       - do: approvals
-        min:
-          count: 1
-        limit:
-          users: [ 'SeonHyungJo', 'CallbusLab' ]
+        required:
+          owners: true # Optional boolean. When true, the file .github/CODEOWNERS is read and owners made required reviewers
+          assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
+          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
+          message: 'required'
+        block:
+          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+          message: 'block'
     # pass:
     #   - do: comment
     #     payload:
