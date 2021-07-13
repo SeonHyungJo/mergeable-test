@@ -113,14 +113,11 @@ mergeable:
   - when: pull_request_review.*
     name: "Check Approvals"
     validate: 
-      - do: approvals
-    fail:
-      - do: labels
-        labels: [ 'status: *' ]
-        mode: 'delete'
-      - do: labels
-        labels: [ 'status: approved' ]
-        mode: 'add'
-      # - do: merge
-      #   merge_method: 'squash' # Optional , default is 'merge'. Other options : 'rebase', 'squash'
+      - do: label
+        begins_with:
+          match: 'status: approved' # or array of strings
+          message: 'Some message...'  
+    pass:
+      - do: merge
+        merge_method: 'squash' # Optional , default is 'merge'. Other options : 'rebase', 'squash'
     
