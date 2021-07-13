@@ -27,7 +27,7 @@ mergeable:
   #   pass: 
   #     - do: merge
   #       merge_method: 'squash'
-  - when: pull_request.*
+  - when: pull_request.opened
     name: "Automatically merge pull requests once it passes all checks"
     validate: 
       - do: title
