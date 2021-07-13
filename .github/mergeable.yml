@@ -9,10 +9,9 @@ mergeable:
       - do: request_review
         reviewers: ['SeonHyungJo', 'CallbusLab']
       - do: labels
-        # if label doesn't exist, it'll be created
-        labels: [ 'status: pending' ] # All labels beginning with 'feature-' will be removed
+        labels: [ 'status: pending' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -21,12 +20,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: feat' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -35,12 +31,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: build' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -49,12 +42,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: chore' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -63,12 +53,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: style' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -77,12 +64,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: ci' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -91,12 +75,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: docs' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate:
       - do: title
@@ -105,12 +86,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: fix' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -119,12 +97,9 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: perf' ]
         mode: 'add'
-  - when: pull_request.edited, pull_request.opened
+  - when: pull_request.opened
     name: "Set Type Label"
     validate: 
       - do: title
@@ -133,26 +108,22 @@ mergeable:
           message: 'Custom message...'
     pass:
       - do: labels
-        labels: [ 'type:*' ]
-        mode: 'delete'
-      - do: labels
         labels: [ 'type: refactor' ]
         mode: 'add'
-  # - when: pull_request.*
-  #   name: "Check Approvals"
-  #   validate: 
-  #     - do: approvals
-  #       required:
-  #         requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
-  #         message: 'Custom message...'
-  #       block:
-  #         changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
-  #         message: 'Custom message..'
-  #   pass:
-  #     - do: labels
-  #       labels: [ 'status:*' ]
-  #       mode: 'delete'
-  #     - do: labels
-  #       labels: [ 'status: approved' ]
-  #       mode: 'add'
+  - when: pull_request.*, pull_request_review.*
+    name: "Check Approvals"
+    validate: 
+      - do: approvals
+        required:
+          requested_reviewers: true # Optional boolean. When true, all the requested reviewer's approval is required
+          message: 'Custom message...'
+        block:
+          changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
+          message: 'Custom message..'
+    pass:
+      - do: comment
+        payload:
+          body: >
+            Approval
+        leave_old_comment: true # Optional, by default old comments are deleted, if true, old comments will be left alone
     
