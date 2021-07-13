@@ -19,9 +19,8 @@ mergeable:
         min:
           count: 1 # Number of minimum reviewers. In this case 2.
           message: 'Custom message...'
-        required:
-          reviewers: ['CallbusLab'] # list of github usernames required to review
-          message: 'Custom message...'
+        limit:
+          users: ['SeonHyungJo', 'CallbusLab'] # when the option is present, approvals from users in this list will count
         block:
           changes_requested: true # If true, block all approvals when one of the reviewers gave 'changes_requested' review
           message: 'changes_requested'
